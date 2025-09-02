@@ -1,0 +1,55 @@
+ES ec2-user@ip-10-0-129-88 ~]$ curl 10.0.129.88:9200
+{
+  "name" : "es-a",
+  "cluster_name" : "elk-single",
+  "cluster_uuid" : "Zpu0CZ-vT0OubryTU8UMvA",
+  "version" : {
+    "number" : "8.15.5",
+    "build_flavor" : "default",
+    "build_type" : "tar",
+    "build_hash" : "b10896bcfe167cce44a84ba2771d101fb596d40d",
+    "build_date" : "2024-11-21T22:06:13.985834967Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.11.1",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
+[ES ec2-user@ip-10-0-129-88 ~]$ ls
+elasticsearch-8.15.5  elasticsearch-8.15.5-linux-x86_64.tar.gz  setup.sh
+[ES ec2-user@ip-10-0-129-88 ~]$ cd ^C
+[ES ec2-user@ip-10-0-129-88 ~]$ mv elasticsearch-8.15.5 es-8.15.5\
+> ^C
+[ES ec2-user@ip-10-0-129-88 ~]$ mv elasticsearch-8.15.5 es-8.15.5
+[ES ec2-user@ip-10-0-129-88 ~]$ ls
+elasticsearch-8.15.5-linux-x86_64.tar.gz  es-8.15.5  setup.sh
+[ES ec2-user@ip-10-0-129-88 ~]$ cd es-8.15.5/
+[ES ec2-user@ip-10-0-129-88 es-8.15.5]$ ls
+LICENSE.txt  NOTICE.txt  README.asciidoc  bin  config  data  es.pid  jdk  lib  logs  modules  plugins
+[ES ec2-user@ip-10-0-129-88 es-8.15.5]$ cd ..
+[ES ec2-user@ip-10-0-129-88 ~]$ tar xvf e
+elasticsearch-8.15.5-linux-x86_64.tar.gz  es-8.15.5/                                
+[ES ec2-user@ip-10-0-129-88 ~]$ tar xvf elasticsearch-8.15.5-linux-x86_64.tar.gz ^C
+[ES ec2-user@ip-10-0-129-88 ~]$ cat es-8.15.5/config/elasticsearch.yml 
+cluster.name: elk-single
+node.name: es-a
+
+path.data: /home/ec2-user/elasticsearch-8.15.5/data
+path.logs: /home/ec2-user/elasticsearch-8.15.5/logs
+
+discovery.type: single-node
+
+# 사설 IP로 바인딩(EC2 내부 통신 OK). 로컬만이면 127.0.0.1 로 바꿔도 됨
+network.host: _site_
+http.port: 9200
+transport.port: 9300
+
+# 불필요 기능 OFF (메모리 절약)
+xpack.security.enabled: false
+xpack.ml.enabled: false
+xpack.watcher.enabled: false
+xpack.profiling.enabled: false
+xpack.apm_data.enabled: false
+xpack.monitoring.collection.enabled: false
+ingest.geoip.downloader.enabled: false

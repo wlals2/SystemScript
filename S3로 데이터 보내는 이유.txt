@@ -1,0 +1,33 @@
+데이터 소스: http://10.0.129.85:9200 의 Elasticsearch
+
+인덱스 범위: webapp2-*
+
+시간 조건: 최근 1시간 (now-1h)
+
+정렬/개수: @timestamp 오름차순, 최대 SIZE=10000건
+
+추출 필드(딱 이 목록만 _source에서 가져옴)
+
+@timestamp
+
+event_code
+
+event.category
+
+url.path
+
+http.request.method
+
+client.ip
+
+http.response.status_code
+
+http.request.referrer
+
+user_agent.name
+
+app
+
+##
+해당 스크립트로 인해 event_code 를통한 cart/order 구매율
+response status_code로 가용성을 계산이 가능하다.
